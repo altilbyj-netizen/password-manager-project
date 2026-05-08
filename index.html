@@ -2,32 +2,49 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>نظام PassSafe - إدارة كلمات المرور</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام PassSafe - مشروع جامعة بابل</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #e9ecef; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; direction: rtl; }
+        .container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 350px; }
+        h1 { color: #0d6efd; margin-bottom: 10px; }
+        input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ced4da; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #0d6efd; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        button:hover { background-color: #0b5ed7; }
+        footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6; font-size: 13px; color: #6c757d; }
+        .member { display: inline-block; background: #f8f9fa; padding: 5px 10px; margin: 2px; border-radius: 5px; }
+    </style>
 </head>
 <body>
+
     <div class="container">
-        <header>
-            <h1>🔐 نظام PassSafe</h1>
-            <p>مشروع الكلية - قسم الشبكات</p>
-        </header>
-
-        <div id="login-section">
-            <input type="password" id="master-pass" placeholder="كلمة المرور الرسمية">
-            <button onclick="unlock()">دخول</button>
-        </div>
-
-        <div id="main-content" style="display:none;">
-            <input type="text" id="site-name" placeholder="اسم الموقع">
-            <input type="password" id="site-pass" placeholder="كلمة المرور">
-            <button onclick="saveData()">تشفير وحفظ</button>
-            <ul id="password-list"></ul>
+        <h1>🔐 PassSafe</h1>
+        <p>نظام إدارة كلمات المرور الآمن</p>
+        
+        <div id="login-box">
+            <input type="password" id="masterPass" placeholder="أدخل كلمة المرور (1234)">
+            <button onclick="checkPass()">دخول للنظام</button>
         </div>
 
         <footer>
-            <p>فريق العمل: جعفر سيف، فاطمة محمد، زهراء فائق</p>
+            <strong>فريق العمل:</strong><br>
+            <div class="member">جعفر سيف</div>
+            <div class="member">فاطمة محمد</div>
+            <div class="member">زهراء فائق</div>
+            <p>جامعة بابل - تقنية المعلومات</p>
         </footer>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function checkPass() {
+            const p = document.getElementById('masterPass').value;
+            if(p === "1234") {
+                alert("أهلاً بكم فريق المبدعين! النظام جاهز للعمل.");
+                // هنا يمكن إضافة كود إظهار القائمة بعد الدخول
+            } else {
+                alert("عذراً، كلمة المرور غير صحيحة.");
+            }
+        }
+    </script>
 </body>
 </html>
