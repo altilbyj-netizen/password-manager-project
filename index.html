@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>نظام PassSafe - إدارة كلمات المرور</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 نظام PassSafe</h1>
+            <p>مشروع الكلية - قسم الشبكات</p>
+        </header>
+
+        <div id="login-section">
+            <input type="password" id="master-pass" placeholder="كلمة المرور الرسمية">
+            <button onclick="unlock()">دخول</button>
+        </div>
+
+        <div id="main-content" style="display:none;">
+            <input type="text" id="site-name" placeholder="اسم الموقع">
+            <input type="password" id="site-pass" placeholder="كلمة المرور">
+            <button onclick="saveData()">تشفير وحفظ</button>
+            <ul id="password-list"></ul>
+        </div>
+
+        <footer>
+            <p>فريق العمل: جعفر سيف، فاطمة محمد، زهراء فائق</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
