@@ -2,36 +2,69 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>نظام PassSafe - مشروع جامعة بابل</title>
-    <link rel="stylesheet" href="style.css">
+    <title>PassSafe - فريق المبدعين</title>
+    <style>
+        /* التنسيق بداخل الملف لضمان العمل */
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; direction: rtl; }
+        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        h1 { color: #1a73e8; }
+        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        button { width: 100%; padding: 12px; background: #1a73e8; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        button:hover { background: #1557b0; }
+        .item { background: #e8f0fe; padding: 10px; margin: 10px 0; border-radius: 8px; text-align: right; word-break: break-all; }
+        .team { font-size: 12px; color: #777; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
+    </style>
 </head>
 <body>
+
     <div class="container">
         <div id="login-section">
             <h1>🔐 PassSafe</h1>
-            <p>نظام إدارة كلمات المرور الآمن</p>
-            <input type="password" id="master-pass" placeholder="أدخل رمز الدخول (1234)">
-            <button onclick="unlock()" id="login-btn">دخول للنظام</button>
-            
-            <div class="team-info">
-                <p>فريق العمل:</p>
-                <span>جعفر سيف</span> | <span>فاطمة محمد</span> | <span>زهراء فائق</span>
-                <p>جامعة بابل - تقنية المعلومات</p>
+            <p>نظام إدارة كلمات المرور</p>
+            <input type="password" id="master-input" placeholder="أدخل الرمز (1234)">
+            <button onclick="handleLogin()">دخول للنظام</button>
+            <div class="team">
+                فريق العمل: جعفر سيف، فاطمة محمد، زهراء فائق <br>
+                جامعة بابل - تقنية المعلومات
             </div>
         </div>
 
         <div id="main-content" style="display:none;">
-            <h2>خزان كلمات المرور</h2>
-            <div class="input-group">
-                <input type="text" id="site-name" placeholder="اسم الموقع (مثلاً: فيسبوك)">
-                <input type="password" id="site-pass" placeholder="كلمة المرور">
-                <button onclick="saveData()">تشفير وحفظ</button>
-            </div>
-            <hr>
-            <ul id="password-list"></ul>
-            <button onclick="location.reload()" style="background:#666;">خروج آمن</button>
+            <h2>خزان البيانات 📂</h2>
+            <input type="text" id="site-name" placeholder="اسم الموقع">
+            <input type="password" id="site-pass" placeholder="كلمة المرور">
+            <button onclick="handleSave()" style="background: #28a745;">تشفير وحفظ</button>
+            <div id="list-container" style="margin-top: 20px;"></div>
+            <button onclick="location.reload()" style="background: #6c757d; margin-top: 20px;">خروج</button>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // البرمجة بداخل الملف لضمان العمل
+        function handleLogin() {
+            const val = document.getElementById('master-input').value;
+            if (val === "1234") {
+                alert("تم الدخول بنجاح!");
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                alert("الرمز خطأ! جرب 1234");
+            }
+        }
+
+        function handleSave() {
+            const name = document.getElementById('site-name').value;
+            const pass = document.getElementById('site-pass').value;
+            if (name && pass) {
+                const container = document.getElementById('list-container');
+                const encrypted = btoa(pass); // تشفير Base64
+                container.innerHTML += `<div class="item"><strong>${name}:</strong> ${encrypted}</div>`;
+                document.getElementById('site-name').value = "";
+                document.getElementById('site-pass').value = "";
+            } else {
+                alert("يرجى إكمال البيانات");
+            }
+        }
+    </script>
 </body>
 </html>
